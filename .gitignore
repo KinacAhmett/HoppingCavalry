@@ -1,0 +1,28 @@
+# Unity basic gitignore - only essential folders
+/Library/
+/Temp/
+/Obj/
+/Build/
+/Builds/
+/Logs/
+
+# IDE files
+.vs/
+.vscode/
+.idea/
+
+# Windows/Mac system files
+Thumbs.db
+.DS_Store
+
+# Project files (auto-generated)
+*.csproj
+*.sln
+*.user
+
+# Keep only Scripts (must be BEFORE Assets/ ignore)
+!/Assets/Scripts/
+!/Assets/Scripts/**
+
+# Ignore all other Assets
+/Assets/
