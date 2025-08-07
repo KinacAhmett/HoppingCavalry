@@ -5,6 +5,7 @@
 /Build/
 /Builds/
 /Logs/
+/ProjectSettings/
 
 # IDE files
 .vs/
