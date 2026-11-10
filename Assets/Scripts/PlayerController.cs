@@ -45,6 +45,21 @@ public class PlayerController : MonoBehaviour
         }
 
         _rigidbody.linearVelocity = new Vector2(x * _movementSpeed, _rigidbody.linearVelocity.y);
+
+        // --- Ekran sarması ---
+        Vector2 pos = _rigidbody.position;
+        float halfWidth = Camera.main.orthographicSize * Camera.main.aspect;
+
+        if (pos.x > halfWidth)
+        {
+            pos.x = -halfWidth;
+            _rigidbody.position = pos;
+        }
+        else if (pos.x < -halfWidth)
+        {
+            pos.x = halfWidth;
+            _rigidbody.position = pos;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)

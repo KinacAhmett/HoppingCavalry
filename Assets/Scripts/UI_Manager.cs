@@ -95,6 +95,9 @@ public class UI_Manager : MonoBehaviour
         // Oyuncuyu ve oyunu başlat
         _player.SetActive(true);
         _player.transform.position = _playerStartPosition;
+        Rigidbody2D rb = _player.GetComponent<Rigidbody2D>();
+        rb.position = _playerStartPosition;
+        rb.linearVelocity = Vector2.zero;
         Camera.main.transform.position = new Vector3(0f, 0f, Camera.main.transform.position.z);
         
         _currentScore = 0f;
