@@ -9,15 +9,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _jumpForce = 13f;
     [SerializeField] private float _movementSpeed = 5f;
     [SerializeField] private float _maxDistanceFromCameraBeforeDeath = 5f;
-
+    [SerializeField] private AudioClip _jumpSound;
+    
+    
     private Rigidbody2D _rigidbody;
     private InputAction _moveInputAction;
-
+    private AudioSource _audioSource;
 
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _moveInputAction = InputSystem.actions.FindAction("Move");
+        _audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -52,6 +55,7 @@ public class PlayerController : MonoBehaviour
             {
                 _rigidbody.linearVelocity = new Vector2(_rigidbody.linearVelocity.x, 0f); // Yüksekliği sıfırla
                 _rigidbody.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
+                _audioSource.PlayOneShot(_jumpSound);
                 break;
             }
         }
