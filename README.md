@@ -26,7 +26,6 @@ A 2D endless jumping game built in Unity, inspired by the classic Doodle Jump me
 - Dynamic difficulty scaling based on camera height
 - Platform count reduction: 7→6→5→4→3 as height increases
 - Intelligent spawn distance calculation to maintain playability
-- Platform cleanup system for performance optimization
 
 #### `CameraController.cs`
 - Upward-only camera follow system
@@ -105,7 +104,6 @@ For quick setup, you can use the **Brackeys Platformer Bundle**:
 
 - **Modular Architecture**: Each script handles a specific game system
 - **Scalable Difficulty**: Easy to adjust progression parameters
-- **Performance Optimized**: Automatic cleanup of off-screen platforms
 - **Input System Integration**: Uses Unity's modern Input System
 - **Physics-Based**: Realistic jump mechanics using Unity's physics
 
