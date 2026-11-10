@@ -8,7 +8,6 @@ public class PlatformSpawner : MonoBehaviour
     [SerializeField] private GameObject _firstPlatform;
     [SerializeField] private float _maxDistanceFromCameraBeforeSpawn = 10f;
     [SerializeField] private float _minDistanceFromCameraPreviousPlatform = 0.5f;
-    [SerializeField] private float _maxDistanceFromCameraPreviousPlatform = 0.7f;
     [SerializeField] private float _xSpawnRange = 3f;
     [SerializeField] private float _platformDestroyOffset = 10f;
 
@@ -41,6 +40,21 @@ public class PlatformSpawner : MonoBehaviour
         {
             SpawnPlatforms();
         }
+
+        // --- Platform temizleme ---
+        float destroyY = Camera.main.transform.position.y - _platformDestroyOffset;
+
+        for (int i = _spawnedPlatforms.Count - 1; i >= 0; i--)
+        {
+            GameObject platform = _spawnedPlatforms[i];
+
+            if (platform.transform.position.y < destroyY)
+            {
+                Destroy(platform);
+                _spawnedPlatforms.RemoveAt(i);
+            }
+        }
+
     }
 
     private void SpawnPlatforms()

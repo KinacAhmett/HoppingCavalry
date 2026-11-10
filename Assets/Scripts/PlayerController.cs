@@ -5,8 +5,6 @@ public class PlayerController : MonoBehaviour
 
 {
     public Animator animator;
-    float horizontalMove = 0f;
-    public float runSpeed = 4f;
 
     [SerializeField] private float _jumpForce = 13f;
     [SerializeField] private float _movementSpeed = 5f;
@@ -33,8 +31,17 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector2 moveInput = _moveInputAction.ReadValue<Vector2>();
-        _rigidbody.linearVelocity = new Vector2(moveInput.x * _movementSpeed, _rigidbody.linearVelocity.y);
+        // Klavye girdisi (A/D, ok tuşları)
+        float x = _moveInputAction.ReadValue<Vector2>().x;
+
+        // Dokunmatik girdi: ekrana dokunuluyorsa klavyenin yerine geçer
+        if (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.isPressed)
+        {
+            float touchX = Touchscreen.current.primaryTouch.position.ReadValue().x;
+            x = touchX < Screen.width / 2f ? -1f : 1f;
+        }
+
+        _rigidbody.linearVelocity = new Vector2(x * _movementSpeed, _rigidbody.linearVelocity.y);
     }
 
     private void OnCollisionEnter2D(Collision2D other)

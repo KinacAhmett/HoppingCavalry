@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 
-public class Menu : MonoBehaviour
+public class UI_Manager : MonoBehaviour
 {
     [SerializeField] private GameObject _menuPanel;
     [SerializeField] private GameObject _runtimePanel; // Oyun içi arayüz paneli (Skor vb.)
@@ -18,7 +18,7 @@ public class Menu : MonoBehaviour
 
     private void Awake()
     {
-        _platformSpawner = FindFirstObjectByType<PlatformSpawner>();
+        _platformSpawner = FindAnyObjectByType<PlatformSpawner>();
 
         // Kayıtlı yüksek skoru yükle
         _highScore = PlayerPrefs.GetFloat(HighScoreKey, 0);
@@ -43,7 +43,7 @@ public class Menu : MonoBehaviour
         {
             // Oyuncu hayattaysa skoru güncelle
             float score = _player.transform.position.y - _playerStartPosition.y;
-            _currentScore = Mathf.Max(0, score);
+            _currentScore = Mathf.Max(_currentScore, score);
             _currentScoreText.text = $"Score: {_currentScore:F0}";
             // Oyun sırasında high score yazılarını gizle
             _highScoreText.gameObject.SetActive(false);
@@ -82,7 +82,7 @@ public class Menu : MonoBehaviour
     {
 
         // PlatformSpawner referansını her başlatmada tekrar bul
-        _platformSpawner = FindFirstObjectByType<PlatformSpawner>();
+        _platformSpawner = FindAnyObjectByType<PlatformSpawner>();
         if (_player == null || _menuPanel == null || _runtimePanel == null || _platformSpawner == null)
         {
             return;
