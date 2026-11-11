@@ -1,1 +1,5 @@
 Assets/TextMesh[[:space:]]Pro/** linguist-vendored
+*.shader linguist-vendored
+*.cginc linguist-vendored
+*.hlsl linguist-vendored
+*.shadergraph linguist-vendored
