@@ -24,3 +24,7 @@ Thumbs.db
 # Unity Version Control
 .plastic/
 ignore.conf
+
+# Build sırasında üretilen dosyalar
+/Data/
+/Assets/Resources/PerformanceTestRun*
